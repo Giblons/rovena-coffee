@@ -1,0 +1,123 @@
+:root {
+  /* ==========================================================================
+     1. COLOR SYSTEM (Espresso, Warm Cream, Terracotta & Artisan Accents)
+     ========================================================================== */
+  
+  /* Espresso Palette (Dark Roast, Body, Contrast) */
+  --color-espresso-950: #1a0f0d;
+  --color-espresso-900: #2b1810;
+  --color-espresso-800: #3d2317;
+  --color-espresso-700: #543120;
+  --color-espresso-600: #6e412b;
+  --color-espresso-500: #8c5337;
+  --color-espresso-400: #aa6b4c;
+  --color-espresso-300: #c78b6d;
+  --color-espresso-200: #e0b49c;
+  --color-espresso-100: #f2dbce;
+  --color-espresso-50:  #faf4f0;
+
+  /* Warm Cream & Parchment (Backgrounds, Cards, Warm Neutrals) */
+  --color-cream-900: #d6ccbe;
+  --color-cream-800: #e3dcd1;
+  --color-cream-700: #eee7dc;
+  --color-cream-600: #f5efe6;
+  --color-cream-500: #fcf9f2; /* Primary Canvas Background */
+  --color-cream-400: #fdfbf7;
+  --color-cream-300: #ffffff;
+
+  /* Terracotta & Copper (Primary CTAs, Active States, Key Accents) */
+  --color-terracotta-900: #5c1c0f;
+  --color-terracotta-800: #7b2715;
+  --color-terracotta-700: #9e331c;
+  --color-terracotta-600: #c44225;
+  --color-terracotta-500: #d9532f; /* Artisan Accent */
+  --color-terracotta-400: #e47556;
+  --color-terracotta-300: #ee9980;
+  --color-terracotta-200: #f6bead;
+  --color-terracotta-100: #fde8e2;
+  --color-terracotta-50:  #fff5f2;
+
+  /* Botanical Olive (Washed Process, Organic, Notes of Tea/Jasmine) */
+  --color-olive-700: #35432d;
+  --color-olive-600: #4a5d3f;
+  --color-olive-500: #607952;
+  --color-olive-400: #7c996d;
+  --color-olive-300: #9cb58f;
+  --color-olive-200: #c8d8c0;
+  --color-olive-100: #edf3eb;
+
+  /* Golden Honey (Honey Process, SCA Cupping Score Badge, Sweet Notes) */
+  --color-honey-700: #8c6310;
+  --color-honey-600: #b58117;
+  --color-honey-500: #d99b1c;
+  --color-honey-400: #e8b64e;
+  --color-honey-300: #f4ce7a;
+  --color-honey-200: #fce4ad;
+  --color-honey-100: #fef6e4;
+
+  /* Berry / Anaerobic (Anaerobic Ferment, Winey/Fruit Notes) */
+  --color-berry-700: #5c1833;
+  --color-berry-600: #7e2448;
+  --color-berry-500: #a4325e;
+  --color-berry-400: #c3527e;
+  --color-berry-300: #de7da3;
+  --color-berry-200: #f0b0ca;
+  --color-berry-100: #fae8f0;
+
+  /* Muted Charcoal / Neutral Slate */
+  --color-charcoal-900: #121417;
+  --color-charcoal-800: #1e2229;
+  --color-charcoal-700: #2d3139;
+  --color-charcoal-600: #3f4550;
+  --color-charcoal-500: #555b68;
+  --color-charcoal-400: #717886;
+  --color-charcoal-300: #9da3af;
+  --color-charcoal-200: #cbcfd7;
+  --color-charcoal-100: #e7e9ed;
+
+  /* ==========================================================================
+     2. SEMANTIC TOKENS
+     ========================================================================== */
+  --bg-canvas: var(--color-cream-500);
+  --bg-surface: #ffffff;
+  --bg-surface-elevated: var(--color-cream-400);
+  --bg-surface-muted: var(--color-cream-600);
+  --bg-surface-dark: var(--color-espresso-950);
+
+  --text-primary: var(--color-espresso-950);
+  --text-secondary: var(--color-espresso-700);
+  --text-muted: var(--color-charcoal-500);
+  --text-on-dark: var(--color-cream-500);
+  --text-accent: var(--color-terracotta-500);
+
+  --border-subtle: rgba(43, 24, 16, 0.08);
+  --border-medium: rgba(43, 24, 16, 0.16);
+  --border-strong: rgba(43, 24, 16, 0.28);
+  --border-dark: rgba(252, 249, 242, 0.15);
+
+  --focus-ring: var(--color-terracotta-500);
+  --focus-ring-offset: var(--color-cream-500);
+
+  /* ==========================================================================
+     3. TYPOGRAPHY
+     ========================================================================== */
+  --font-serif: "Playfair Display", "Fraunces", Georgia, serif;
+  --font-sans: "Plus Jakarta Sans", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono", "SF Mono", Consolas, monospace;
+
+  /* ==========================================================================
+     4. RADII & ELEVATION
+     ========================================================================== */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  --shadow-subtle: 0 1px 3px rgba(43, 24, 16, 0.04), 0 1px 2px rgba(43, 24, 16, 0.02);
+  --shadow-card: 0 4px 16px -2px rgba(43, 24, 16, 0.06), 0 2px 6px -1px rgba(43, 24, 16, 0.03);
+  --shadow-elevated: 0 12px 32px -4px rgba(43, 24, 16, 0.08), 0 4px 12px -2px rgba(43, 24, 16, 0.04);
+  --shadow-drawer: -8px 0 32px rgba(26, 15, 13, 0.18);
+  --shadow-modal: 0 24px 48px -8px rgba(26, 15, 13, 0.25);
+}
