@@ -138,7 +138,7 @@ export const PaymentSimulator: React.FC<PaymentSimulatorProps> = ({
             </span>
           </div>
           <span className="font-serif font-bold text-sm tracking-wider text-terracotta-300">
-            LUMINA PAY
+            ROVENA PAY
           </span>
         </div>
 

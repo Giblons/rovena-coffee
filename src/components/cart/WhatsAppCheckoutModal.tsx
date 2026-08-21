@@ -7,6 +7,9 @@ import { Modal } from '@/components/ui/Modal';
 import { Button } from '@/components/ui/Button';
 import { CartItem, CartSummary, AppliedDiscount } from '@/types/cart';
 import { CreateOrderPayload } from '@/types/order';
+import { SITE } from '@/lib/site';
+import { formatCurrency } from '@/lib/utils';
+import { useFormatCurrency } from '@/context/PreferencesContext';
 
 export interface WhatsAppCheckoutModalProps {
   isOpen: boolean;
@@ -26,6 +29,7 @@ export const WhatsAppCheckoutModal: React.FC<WhatsAppCheckoutModalProps> = ({
   onOrderSuccess,
 }) => {
   const router = useRouter();
+  const formatPrice = useFormatCurrency();
   const [customerName, setCustomerName] = useState('');
   const [customerPhone, setCustomerPhone] = useState('');
   const [shippingAddress, setShippingAddress] = useState('');
@@ -49,17 +53,17 @@ export const WhatsAppCheckoutModal: React.FC<WhatsAppCheckoutModalProps> = ({
     items.forEach((item, index) => {
       const subTag = item.isSubscription ? ` [Sub: ${item.subscriptionFrequency || 'Monthly'}]` : '';
       msg += `${index + 1}. *${item.name}* (${item.weight}, ${formatGrind(item.grind)})${subTag}\n`;
-      msg += `   Qty: ${item.quantity} x $${item.unitPrice.toFixed(2)} = $${(item.unitPrice * item.quantity).toFixed(2)}\n`;
+      msg += `   Qty: ${item.quantity} x ${formatCurrency(item.unitPrice)} = ${formatCurrency(item.unitPrice * item.quantity)}\n`;
     });
 
     msg += `\n*ORDER TOTALS:*\n`;
-    msg += `• Net Subtotal: $${summary.netSubtotal.toFixed(2)}\n`;
+    msg += `• Net Subtotal: ${formatCurrency(summary.netSubtotal)}\n`;
     if (summary.couponDiscount > 0) {
-      msg += `• Promo Discount (${appliedDiscount?.code}): -$${summary.couponDiscount.toFixed(2)}\n`;
+      msg += `• Promo Discount (${appliedDiscount?.code}): -${formatCurrency(summary.couponDiscount)}\n`;
     }
-    msg += `• Shipping: ${summary.shippingFee === 0 ? 'FREE' : `$${summary.shippingFee.toFixed(2)}`}\n`;
-    msg += `• Est. Tax (8%): $${summary.tax.toFixed(2)}\n`;
-    msg += `*• GRAND TOTAL: $${(summary.netSubtotal - summary.couponDiscount + summary.shippingFee + summary.tax).toFixed(2)}*\n`;
+    msg += `• Shipping: ${summary.shippingFee === 0 ? 'FREE' : formatCurrency(summary.shippingFee)}\n`;
+    msg += `• Est. Tax (8%): ${formatCurrency(summary.tax)}\n`;
+    msg += `*• GRAND TOTAL: ${formatCurrency(summary.netSubtotal - summary.couponDiscount + summary.shippingFee + summary.tax)}*\n`;
     msg += `----------------------------------------\n`;
     msg += `_Please confirm roast availability and payment instructions via WhatsApp._`;
 
@@ -85,15 +89,15 @@ export const WhatsAppCheckoutModal: React.FC<WhatsAppCheckoutModalProps> = ({
         customer: {
           firstName: customerName.trim().split(' ')[0] || customerName.trim(),
           lastName: customerName.trim().split(' ').slice(1).join(' ') || 'Customer',
-          email: `${customerPhone.trim().replace(/\D/g, '')}@whatsapp.lumina.coffee`,
+          email: `${customerPhone.trim().replace(/\D/g, '')}@whatsapp.rovena.coffee`,
           phone: customerPhone.trim(),
         },
         shippingAddress: {
           street: shippingAddress.trim(),
-          city: 'Direct Roastery Dispatch',
-          state: 'WA',
-          postalCode: '98101',
-          country: 'United States',
+          city: 'Bogor',
+          state: 'Jawa Barat',
+          postalCode: '16113',
+          country: 'Indonesia',
         },
         shippingMethod: summary.shippingFee === 0 ? 'standard' : 'standard',
         items: items.map((i) => ({
@@ -130,7 +134,7 @@ export const WhatsAppCheckoutModal: React.FC<WhatsAppCheckoutModalProps> = ({
       const orderId = data.order.id;
 
       // 2. Open WhatsApp Web / App with prefilled payload
-      const waUrl = `https://wa.me/15551234567?text=${generateWhatsAppMessage(orderId)}`;
+      const waUrl = `https://wa.me/${SITE.phoneE164}?text=${generateWhatsAppMessage(orderId)}`;
       window.open(waUrl, '_blank', 'noopener,noreferrer');
 
       // 3. Clear cart and route to confirmation
@@ -220,7 +224,12 @@ export const WhatsAppCheckoutModal: React.FC<WhatsAppCheckoutModalProps> = ({
         <div className="p-3 rounded-lg bg-cream-500 border border-border-subtle flex justify-between items-center text-xs">
           <span className="font-medium text-espresso-900">Total to Confirm:</span>
           <span className="font-serif font-bold text-sm text-terracotta-600">
-            ${(summary.netSubtotal - summary.couponDiscount + summary.shippingFee + summary.tax).toFixed(2)}
+            {formatPrice(
+              summary.netSubtotal -
+                summary.couponDiscount +
+                summary.shippingFee +
+                summary.tax
+            )}
           </span>
         </div>
 

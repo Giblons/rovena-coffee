@@ -298,7 +298,7 @@ export default function HomePage() {
               What Specialty Enthusiasts Say
             </h2>
             <p className="text-xs sm:text-sm text-charcoal-600">
-              From competitive baristas to morning ritual purists, here is how Lumina coffees perform in the cup.
+              From competitive baristas to morning ritual purists, here is how Rovena coffees perform in the cup.
             </p>
           </div>
 

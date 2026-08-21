@@ -265,7 +265,7 @@ export default function AdminDashboardPage() {
                 <Flame className="w-6 h-6" />
               </div>
               <h1 className="font-serif text-2xl sm:text-3xl font-bold tracking-tight text-white">
-                Lumina Artisan Roastery — Operations Command Center
+                Rovena Coffee Roastery — Operations Command Center
               </h1>
             </div>
             <p className="text-xs text-cream-500 font-sans mt-1">

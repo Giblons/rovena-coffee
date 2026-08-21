@@ -203,7 +203,7 @@ export const OrderDetailModal: React.FC<OrderDetailModalProps> = ({
               <div className="flex items-start justify-between border-b pb-4">
                 <div>
                   <h3 className="font-serif text-xl font-bold text-espresso-950 uppercase tracking-wide">
-                    ☕ Lumina Specialty Roastery — Packing Bench Slip
+                    ☕ Rovena Coffee Roastery — Packing Bench Slip
                   </h3>
                   <p className="text-xs text-charcoal-600 font-sans mt-0.5">
                     Order Ref: <span className="font-mono font-bold text-espresso-900">{order.id}</span> •

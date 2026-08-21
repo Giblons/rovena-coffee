@@ -1,6 +1,8 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import { SITE } from '@/lib/site';
+import { useFormatCurrency } from '@/context/PreferencesContext';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -22,6 +24,7 @@ import { Order } from '@/types/order';
 export default function OrderConfirmationPage() {
   const params = useParams();
   const orderId = params?.id as string;
+  const formatCurrency = useFormatCurrency();
 
   const [order, setOrder] = useState<Order | null>(null);
   const [loading, setLoading] = useState(true);
@@ -87,7 +90,6 @@ export default function OrderConfirmationPage() {
     );
   }
 
-  const formatCurrency = (amount: number) => `$${amount.toFixed(2)}`;
 
   return (
     <div className="py-12 bg-canvas min-h-screen">
@@ -322,8 +324,8 @@ export default function OrderConfirmationPage() {
               </Button>
 
               <a
-                href={`https://wa.me/15551234567?text=${encodeURIComponent(
-                  `Hello Lumina Roastery! Inquiring about my order ${order.id}.`
+                href={`https://wa.me/${SITE.phoneE164}?text=${encodeURIComponent(
+                  `Hello Rovena Coffee Roastery! Inquiring about my order ${order.id}.`
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"

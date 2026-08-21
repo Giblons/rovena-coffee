@@ -15,6 +15,11 @@ describe('Utility & Design Token Integration', () => {
     expect(formatCurrency(1249.99)).toBe('$1,249.99');
   });
 
+  it('formatCurrency() converts USD amounts to IDR for display', () => {
+    expect(formatCurrency(1, 'IDR', 'en')).toBe('IDR 16,000');
+    expect(formatCurrency(22.5, 'IDR', 'id')).toMatch(/360\.?000|360000/);
+  });
+
   it('formatDate() formats standard date strings', () => {
     const formatted = formatDate('2026-08-24T08:00:00Z');
     expect(formatted).toContain('2026');

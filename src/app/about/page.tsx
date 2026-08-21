@@ -4,6 +4,7 @@ import { Container } from '@/components/layout/Container';
 import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
 import { Card } from '@/components/ui/Card';
+import { AboutIntro } from '@/components/about/AboutIntro';
 import {
   Flame,
   ShieldCheck,
@@ -34,9 +35,7 @@ export default function AboutPage() {
               Honoring the Soil, the Producer, and the Flame.
             </h1>
 
-            <p className="text-base sm:text-lg text-charcoal-600 font-sans leading-relaxed">
-              Lumina Artisan Coffee Roasters was founded on an uncompromising conviction: specialty coffee is not an industrial commodity. It is a seasonal agricultural art shaped by volcanic soil, high-altitude microclimates, multi-generational farming expertise, and precision roasting.
-            </p>
+            <AboutIntro />
           </div>
         </Container>
       </section>

@@ -28,7 +28,7 @@ describe('Checkout & Cart UI Components — Unit Tests (Milestone 4)', () => {
   describe('PaymentSimulator', () => {
     it('renders interactive card graphic with default mock card details', () => {
       render(<PaymentSimulator />);
-      expect(screen.getByText('LUMINA PAY')).toBeInTheDocument();
+      expect(screen.getByText('ROVENA PAY')).toBeInTheDocument();
       expect(screen.getByText('4242 4242 4242 4242')).toBeInTheDocument();
       expect(screen.getByText('ALEX MORGAN')).toBeInTheDocument();
       expect(screen.getByText('12/28')).toBeInTheDocument();

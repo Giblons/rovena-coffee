@@ -35,7 +35,7 @@ export async function generateMetadata({ params }: CoffeePageProps): Promise<Met
 
   if (!coffee) {
     return {
-      title: 'Specialty Coffee Not Found | Lumina Artisan Roasters',
+      title: 'Specialty Coffee Not Found | Rovena Coffee Roastery',
       description: 'The requested specialty coffee micro-lot could not be found.',
     };
   }
@@ -44,7 +44,7 @@ export async function generateMetadata({ params }: CoffeePageProps): Promise<Met
   const originStr = `${coffee.origin.region}, ${coffee.origin.country}`;
 
   return {
-    title: `${coffee.name} (SCA ${coffee.scaScore}) | Lumina Artisan Coffee Roasters`,
+    title: `${coffee.name} (SCA ${coffee.scaScore}) | Rovena Coffee Roastery`,
     description: `${coffee.tagline}. Freshly roasted single-origin from ${originStr} (${coffee.origin.altitudeMasl.min}-${coffee.origin.altitudeMasl.max} MASL). Tasting notes: ${primaryNotes}.`,
     keywords: [
       coffee.name,

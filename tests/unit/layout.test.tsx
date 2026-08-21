@@ -4,10 +4,15 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { Container } from '@/components/layout/Container';
+import { PreferencesProvider } from '@/context/PreferencesContext';
 
 vi.mock('next/navigation', () => ({
   usePathname: () => '/',
 }));
+
+function renderWithPrefs(ui: React.ReactElement) {
+  return render(<PreferencesProvider>{ui}</PreferencesProvider>);
+}
 
 describe('Layout Components Verification', () => {
   describe('Container', () => {
@@ -26,10 +31,9 @@ describe('Layout Components Verification', () => {
   describe('Header', () => {
     it('renders logo, navigation links, roast session banner, and cart button', () => {
       const handleOpenCart = vi.fn();
-      render(<Header cartItemCount={3} onOpenCart={handleOpenCart} />);
+      renderWithPrefs(<Header cartItemCount={3} onOpenCart={handleOpenCart} />);
 
-      expect(screen.getByText(/LUMINA/i)).toBeInTheDocument();
-      expect(screen.getByText(/Artisan Coffee Roasters/i)).toBeInTheDocument();
+      expect(screen.getByAltText(/Rovena Coffee Roastery/i)).toBeInTheDocument();
       expect(screen.getByText(/Coffee Catalog/i)).toBeInTheDocument();
       expect(screen.getByText(/Brew Guides/i)).toBeInTheDocument();
       expect(screen.getByText(/Roastery Admin/i)).toBeInTheDocument();
@@ -41,26 +45,36 @@ describe('Layout Components Verification', () => {
     });
 
     it('opens mobile drawer menu when hamburger toggle is clicked', () => {
-      render(<Header cartItemCount={0} />);
+      renderWithPrefs(<Header cartItemCount={0} />);
       const hamburger = screen.getByRole('button', { name: /open mobile menu/i });
       fireEvent.click(hamburger);
       expect(screen.getByText(/Roastery Menu/i)).toBeInTheDocument();
+    });
+
+    it('exposes theme, language, and currency controls', () => {
+      renderWithPrefs(<Header cartItemCount={0} />);
+      expect(screen.getByLabelText(/Language/i)).toBeInTheDocument();
+      expect(screen.getByLabelText(/Currency/i)).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: /dark mode/i })).toBeInTheDocument();
     });
   });
 
   describe('Footer', () => {
     it('renders direct trade, SCA score, and roast-to-order ethos sections', () => {
-      render(<Footer />);
+      renderWithPrefs(<Footer />);
       expect(screen.getByText(/Roast-to-Order Freshness/i)).toBeInTheDocument();
       expect(screen.getByText(/100% Direct-Trade Verified/i)).toBeInTheDocument();
       expect(screen.getByText(/SCA Certified 80\+ Scores/i)).toBeInTheDocument();
-      expect(screen.getByText(/LUMINA ARTISAN ROASTERS/i)).toBeInTheDocument();
+      expect(screen.getByAltText(/Rovena Coffee Roastery/i)).toBeInTheDocument();
+      expect(
+        screen.getByText(/Taman Yasmin Sektor 7, Jln\. Bambu Apus VI no\. 9, Bogor/i)
+      ).toBeInTheDocument();
     });
 
     it('handles newsletter subscription submission', () => {
-      render(<Footer />);
+      renderWithPrefs(<Footer />);
       const input = screen.getByPlaceholderText(/Your email address/i);
-      fireEvent.change(input, { target: { value: 'barista@lumina.coffee' } });
+      fireEvent.change(input, { target: { value: 'barista@rovena.coffee' } });
 
       const form = input.closest('form');
       expect(form).not.toBeNull();
