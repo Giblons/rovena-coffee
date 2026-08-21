@@ -4,7 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import { CoffeeProduct } from '@/types/coffee';
 import { Badge } from '@/components/ui/Badge';
-import { formatCurrency } from '@/lib/utils';
+import { useFormatCurrency } from '@/context/PreferencesContext';
 import { ArrowRight, Coffee, Sparkles } from 'lucide-react';
 
 interface CrossSellCarouselProps {
@@ -18,6 +18,8 @@ export const CrossSellCarousel: React.FC<CrossSellCarouselProps> = ({
   allCoffees,
   className = '',
 }) => {
+  const formatCurrency = useFormatCurrency();
+
   // Pick up to 3 complementary coffees
   const recommendations = allCoffees
     .filter((c) => c.id !== currentCoffeeId)

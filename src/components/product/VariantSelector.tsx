@@ -7,7 +7,7 @@ import { calculateItemUnitPrice, WEIGHT_OPTIONS, SUBSCRIPTION_DISCOUNT_PERCENT }
 import { generateWhatsAppOrderUrl } from '@/lib/whatsapp';
 import { useCart } from '@/context/CartContext';
 import { useToast } from '@/context/ToastContext';
-import { formatCurrency } from '@/lib/utils';
+import { useFormatCurrency, usePreferences } from '@/context/PreferencesContext';
 import { Button } from '@/components/ui/Button';
 import {
   ShoppingBag,
@@ -72,6 +72,8 @@ export const GRIND_OPTIONS: Array<{
 export const VariantSelector: React.FC<VariantSelectorProps> = ({ coffee, className = '' }) => {
   const { addItem, toggleCart } = useCart();
   const { toast } = useToast();
+  const formatCurrency = useFormatCurrency();
+  const { t } = usePreferences();
 
   const [selectedWeight, setSelectedWeight] = useState<PackageWeight>('250g');
   const [selectedGrind, setSelectedGrind] = useState<GrindOption>('whole_bean');
@@ -480,7 +482,7 @@ export const VariantSelector: React.FC<VariantSelectorProps> = ({ coffee, classN
           >
             {coffee.stockStatus === 'out_of_stock'
               ? 'Sold Out'
-              : `Add to Bag • ${formatCurrency(totalVariantPrice)}`}
+              : `${t('cta.addToBag')} • ${formatCurrency(totalVariantPrice)}`}
           </Button>
 
           {/* WhatsApp Direct Order Button */}

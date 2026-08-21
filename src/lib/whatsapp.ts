@@ -16,10 +16,10 @@ export interface WhatsAppOrderDetails {
   shipping: number;
   total: number;
   specialInstructions?: string;
-  roasteryPhone?: string; // Default: "+1 (555) 839-2633"
+  roasteryPhone?: string; // Default: "+62 852-8784-7076"
 }
 
-export const DEFAULT_ROASTERY_PHONE = '15558392633';
+export const DEFAULT_ROASTERY_PHONE = '6285287847076';
 
 /**
  * Formats structured plain-text message for WhatsApp direct order link.

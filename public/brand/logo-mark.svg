@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Rovena">
+  <rect width="64" height="64" rx="12" fill="#2b1810"/>
+  <ellipse cx="32" cy="32" rx="14" ry="20" fill="#c78b6d"/>
+  <path fill="#2b1810" d="M32 16c-3 5-4 10-4 16s1 11 4 16c3-5 4-10 4-16s-1-11-4-16z"/>
+</svg>

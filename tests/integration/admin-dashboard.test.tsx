@@ -17,7 +17,7 @@ describe('Roastery Admin & Operations Dashboard — Integration Tests (Milestone
       render(<AdminDashboardPage />);
 
       expect(
-        screen.getByText('Lumina Artisan Roastery — Operations Command Center')
+        screen.getByText('Rovena Coffee Roastery — Operations Command Center')
       ).toBeInTheDocument();
       expect(screen.getByTestId('live-staff-indicator')).toHaveTextContent(
         'Staff: Live — Roastmaster Active'

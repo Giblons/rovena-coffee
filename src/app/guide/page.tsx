@@ -272,7 +272,7 @@ export default function GuidePage() {
 
             <div className="pt-4 flex items-center justify-between flex-wrap gap-4 border-t border-espresso-800">
               <p className="text-xs text-charcoal-400">
-                All Lumina coffee bags feature one-way degassing valves and roast dates stamped on the back seam.
+                All Rovena coffee bags feature one-way degassing valves and roast dates stamped on the back seam.
               </p>
               <Link href="/catalog">
                 <Button variant="primary" size="md" rightIcon={<ArrowRight className="w-4 h-4" />}>

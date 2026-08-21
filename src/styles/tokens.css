@@ -121,3 +121,32 @@
   --shadow-drawer: -8px 0 32px rgba(26, 15, 13, 0.18);
   --shadow-modal: 0 24px 48px -8px rgba(26, 15, 13, 0.25);
 }
+
+/* Dark mode — espresso canvas with cream type */
+.dark {
+  --bg-canvas: var(--color-espresso-950);
+  --bg-surface: var(--color-espresso-900);
+  --bg-surface-elevated: var(--color-espresso-800);
+  --bg-surface-muted: var(--color-espresso-800);
+  --bg-surface-dark: var(--color-espresso-950);
+
+  --text-primary: var(--color-cream-500);
+  --text-secondary: var(--color-cream-800);
+  --text-muted: var(--color-charcoal-300);
+  --text-on-dark: var(--color-cream-500);
+  --text-accent: var(--color-terracotta-400);
+
+  --border-subtle: rgba(252, 249, 242, 0.08);
+  --border-medium: rgba(252, 249, 242, 0.14);
+  --border-strong: rgba(252, 249, 242, 0.24);
+  --border-dark: rgba(252, 249, 242, 0.12);
+
+  --focus-ring: var(--color-terracotta-400);
+  --focus-ring-offset: var(--color-espresso-950);
+
+  --shadow-subtle: 0 1px 3px rgba(0, 0, 0, 0.35), 0 1px 2px rgba(0, 0, 0, 0.2);
+  --shadow-card: 0 4px 16px -2px rgba(0, 0, 0, 0.4), 0 2px 6px -1px rgba(0, 0, 0, 0.25);
+  --shadow-elevated: 0 12px 32px -4px rgba(0, 0, 0, 0.45), 0 4px 12px -2px rgba(0, 0, 0, 0.3);
+  --shadow-drawer: -8px 0 32px rgba(0, 0, 0, 0.5);
+  --shadow-modal: 0 24px 48px -8px rgba(0, 0, 0, 0.55);
+}

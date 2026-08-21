@@ -18,6 +18,10 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
+  html.dark {
+    color-scheme: dark;
+  }
+
   body {
     background-color: var(--bg-canvas);
     color: var(--text-primary);
@@ -46,12 +50,16 @@
   }
 
   ::-webkit-scrollbar-track {
-    background: var(--color-cream-600);
+    background: var(--bg-surface-muted);
   }
 
   ::-webkit-scrollbar-thumb {
     background: var(--color-cream-900);
     border-radius: var(--radius-full);
+  }
+
+  .dark ::-webkit-scrollbar-thumb {
+    background: var(--color-espresso-600);
   }
 
   ::-webkit-scrollbar-thumb:hover {

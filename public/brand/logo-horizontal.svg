@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 96" role="img" aria-label="Rovena Coffee Roastery">
+  <defs>
+    <style>
+      .espresso { fill: #2b1810; }
+      .bean { fill: #8c5337; }
+    </style>
+  </defs>
+  <!-- Compact monogram -->
+  <g transform="translate(8, 8) scale(0.72)">
+    <path class="espresso" d="M18 8h28c22 0 40 18 40 40v10c0 22-18 40-40 40H46v36H18V8zm28 24v42h12c9 0 16-7 16-16v-10c0-9-7-16-16-16H46z"/>
+    <path class="espresso" fill="none" stroke="#2b1810" stroke-width="10" stroke-linecap="round" d="M78 48c18 0 32 14 32 32s-14 32-32 32"/>
+    <ellipse class="bean" cx="78" cy="80" rx="14" ry="20"/>
+    <path fill="#faf4f0" d="M78 64c-3 5-4 10-4 16s1 11 4 16c3-5 4-10 4-16s-1-11-4-16z"/>
+  </g>
+  <text fill="#2b1810" font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="28" letter-spacing="0.1em" x="118" y="48">ROVENA</text>
+  <text fill="#8c5337" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11" letter-spacing="0.22em" x="118" y="70">COFFEE ROASTERY</text>
+</svg>

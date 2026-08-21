@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { Plus, Minus, Trash2, RefreshCw } from 'lucide-react';
 import { CartItem } from '@/types/cart';
 import { cn } from '@/lib/utils';
+import { useFormatCurrency } from '@/context/PreferencesContext';
 
 export interface CartItemRowProps {
   item: CartItem;
@@ -17,8 +18,9 @@ export const CartItemRow: React.FC<CartItemRowProps> = ({
   onUpdateQuantity,
   onRemove,
 }) => {
+  const formatPrice = useFormatCurrency();
   const formatGrind = (g: string) => g.replace(/_/g, ' ');
-  const itemTotal = (item.unitPrice * item.quantity).toFixed(2);
+  const itemTotal = item.unitPrice * item.quantity;
 
   return (
     <div className="flex gap-4 py-4 border-b border-border-subtle group">
@@ -46,7 +48,7 @@ export const CartItemRow: React.FC<CartItemRowProps> = ({
               {item.name}
             </h4>
             <span className="font-serif font-bold text-sm text-espresso-950 shrink-0">
-              ${itemTotal}
+              {formatPrice(itemTotal)}
             </span>
           </div>
 

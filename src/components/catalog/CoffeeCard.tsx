@@ -1,12 +1,15 @@
+'use client';
+
 import React from 'react';
 import Link from 'next/link';
 import { CoffeeProduct } from '@/types/coffee';
-import { formatCurrency } from '@/lib/utils';
 import { Card } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
+import { Price } from '@/components/ui/Price';
 import { CuppingScoreBadge } from './CuppingScoreBadge';
 import { RoastLevelMeter } from './RoastLevelMeter';
 import { TastingNotesTags } from './TastingNotesTags';
+import { usePreferences } from '@/context/PreferencesContext';
 import { Mountain, Flame, ArrowRight, Eye } from 'lucide-react';
 
 export interface CoffeeCardProps {
@@ -30,6 +33,8 @@ export const CoffeeCard: React.FC<CoffeeCardProps> = ({
   className,
   onTagClick,
 }) => {
+  const { t } = usePreferences();
+
   const flag = COUNTRY_FLAGS[coffee.origin.country] || '☕';
   const isOutOfStock = coffee.stockStatus === 'out_of_stock';
   const isLowStock = coffee.stockStatus === 'low_stock';
@@ -148,9 +153,9 @@ export const CoffeeCard: React.FC<CoffeeCardProps> = ({
       {/* Card Footer: Price & CTA */}
       <div className="p-5 sm:p-6 pt-0 border-t border-subtle/40 bg-surface flex items-center justify-between gap-3">
         <div>
-          <span className="text-[11px] text-charcoal-400 block font-medium">From (250g)</span>
+          <span className="text-[11px] text-charcoal-400 block font-medium">{t('cta.from')} (250g)</span>
           <span className="font-serif text-lg sm:text-xl font-bold text-espresso-950">
-            {formatCurrency(coffee.basePrice250g)}
+            <Price amount={coffee.basePrice250g} />
           </span>
         </div>
 
