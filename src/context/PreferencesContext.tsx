@@ -30,8 +30,8 @@ interface PreferencesContextValue extends PreferencesState {
 
 const defaults: PreferencesState = {
   theme: 'light',
-  locale: 'en',
-  currency: 'USD',
+  locale: 'id',
+  currency: 'IDR',
 };
 
 const PreferencesContext = createContext<PreferencesContextValue | null>(null);

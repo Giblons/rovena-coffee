@@ -17,11 +17,11 @@ function Probe() {
       <button type="button" onClick={toggleTheme}>
         toggle-theme
       </button>
-      <button type="button" onClick={() => setLocale('id')}>
-        set-id
+      <button type="button" onClick={() => setLocale('en')}>
+        set-en
       </button>
-      <button type="button" onClick={() => setCurrency('IDR')}>
-        set-idr
+      <button type="button" onClick={() => setCurrency('USD')}>
+        set-usd
       </button>
     </div>
   );
@@ -31,14 +31,14 @@ describe('PreferencesProvider', () => {
   beforeEach(() => {
     window.localStorage.clear();
     document.documentElement.classList.remove('dark');
-    document.documentElement.lang = 'en';
+    document.documentElement.lang = 'id';
   });
 
   afterEach(() => {
     window.localStorage.clear();
   });
 
-  it('defaults to light English USD and formats prices', async () => {
+  it('defaults to light Indonesian IDR for Bogor customers', async () => {
     render(
       <PreferencesProvider>
         <Probe />
@@ -48,13 +48,13 @@ describe('PreferencesProvider', () => {
     await waitFor(() => {
       expect(screen.getByTestId('theme')).toHaveTextContent('light');
     });
-    expect(screen.getByTestId('locale')).toHaveTextContent('en');
-    expect(screen.getByTestId('currency')).toHaveTextContent('USD');
-    expect(screen.getByTestId('nav')).toHaveTextContent('Coffee Catalog');
-    expect(screen.getByTestId('price')).toHaveTextContent(formatCurrency(1, 'USD'));
+    expect(screen.getByTestId('locale')).toHaveTextContent('id');
+    expect(screen.getByTestId('currency')).toHaveTextContent('IDR');
+    expect(screen.getByTestId('nav')).toHaveTextContent('Katalog Kopi');
+    expect(screen.getByTestId('price').textContent).toMatch(/16/);
   });
 
-  it('toggles dark mode, Indonesian locale, and IDR currency', async () => {
+  it('toggles dark mode, English locale, and USD currency', async () => {
     render(
       <PreferencesProvider>
         <Probe />
@@ -62,16 +62,16 @@ describe('PreferencesProvider', () => {
     );
 
     fireEvent.click(screen.getByText('toggle-theme'));
-    fireEvent.click(screen.getByText('set-id'));
-    fireEvent.click(screen.getByText('set-idr'));
+    fireEvent.click(screen.getByText('set-en'));
+    fireEvent.click(screen.getByText('set-usd'));
 
     await waitFor(() => {
       expect(screen.getByTestId('theme')).toHaveTextContent('dark');
     });
     expect(document.documentElement.classList.contains('dark')).toBe(true);
-    expect(screen.getByTestId('locale')).toHaveTextContent('id');
-    expect(screen.getByTestId('currency')).toHaveTextContent('IDR');
-    expect(screen.getByTestId('nav')).toHaveTextContent('Katalog Kopi');
-    expect(screen.getByTestId('price').textContent).toMatch(/16/);
+    expect(screen.getByTestId('locale')).toHaveTextContent('en');
+    expect(screen.getByTestId('currency')).toHaveTextContent('USD');
+    expect(screen.getByTestId('nav')).toHaveTextContent('Coffee Catalog');
+    expect(screen.getByTestId('price')).toHaveTextContent(formatCurrency(1, 'USD'));
   });
 });
