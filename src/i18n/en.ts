@@ -1,9 +1,10 @@
 export const en = {
   'nav.catalog': 'Coffee Catalog',
+  'nav.about': 'About Rovena',
   'nav.subscriptions': 'Coffee Subscriptions',
   'nav.batches': 'Roasting Schedule',
   'nav.brewGuides': 'Brew Guides',
-  'nav.impact': 'Direct Trade Impact',
+  'nav.impact': 'Our Story',
   'nav.admin': 'Roastery Admin',
   'nav.menu': 'Roastery Menu',
   'nav.openCart': 'Open Shopping Cart ({count} items)',
@@ -15,16 +16,16 @@ export const en = {
 
   'footer.freshnessTitle': 'Roast-to-Order Freshness',
   'footer.freshnessBody':
-    'We batch roast every Monday & Thursday morning. Orders dispatch within 24 hours of cooling and QC testing.',
-  'footer.tradeTitle': '100% Direct-Trade Verified',
+    'We batch roast every Monday & Thursday. Orders ship within 24 hours after cooling and QC.',
+  'footer.tradeTitle': 'Indonesian & Origin Sourcing',
   'footer.tradeBody':
-    'We pay up to 145% above Fair Trade minimums directly to micro-lot producers and farming cooperatives.',
-  'footer.scaTitle': 'SCA Certified 80+ Scores',
+    'From Bogor to Gayo, Toraja, and beyond — we work directly with farmers and cooperatives we know by name.',
+  'footer.scaTitle': 'Cup Quality You Can Taste',
   'footer.scaBody':
-    'Every single-origin lot is cupped, scored, and profiled under Specialty Coffee Association standards.',
+    'Every lot is cupped and profiled before it reaches your cup — scored, dated, and traceable.',
   'footer.tagline':
-    'Dedicated to the relentless pursuit of sweetness, terroir clarity, and sustainable farmer partnerships across high-altitude coffee origins.',
-  'footer.addressLabel': 'Micro-Roastery & Lab',
+    'Specialty coffee roasted in Bogor. Small batches, honest sourcing, and a cup you can trust every morning.',
+  'footer.addressLabel': 'Roastery',
   'footer.specialty': 'Specialty Coffee',
   'footer.singleOrigin': 'Single-Origin Micro-lots',
   'footer.blends': 'Signature Espresso Blends',
@@ -41,9 +42,33 @@ export const en = {
   'footer.emailPlaceholder': 'Your email address',
   'footer.welcome': 'Welcome to the Roastery Circle!',
   'footer.rights': 'All rights reserved.',
-  'footer.freshRoast': 'Fresh Roast Certified',
-  'footer.directTrade': 'Direct Trade',
-  'footer.scaMember': 'Specialty Coffee Association Member',
+  'footer.location': 'Bogor, West Java, Indonesia',
+  'footer.freshRoast': 'Fresh Roast',
+  'footer.directTrade': 'Direct Sourcing',
+  'footer.scaMember': 'Specialty Coffee',
+
+  'cta.whatsappOrder': 'Order via WhatsApp',
+  'cta.whatsappShort': 'WhatsApp',
+  'whatsapp.prefill': 'Halo Rovena, saya ingin pesan kopi.',
+
+  'home.hero.eyebrow': 'Bogor Specialty Roastery',
+  'home.hero.title': 'Roasted with care in Yasmin, Bogor.',
+  'home.hero.subtitle':
+    'ROVENA is a small-batch roastery in Taman Yasmin Sektor 7. We source Indonesian origins and select international micro-lots, then roast to order so your coffee arrives fresh — not from a warehouse shelf.',
+  'home.hero.ctaCatalog': 'Browse Our Coffees',
+  'home.hero.ctaGuide': 'Brew Guide & Calculator',
+  'home.batch.title': 'Next roast: Monday & Thursday',
+  'home.batch.body': 'Orders before 23:59 WIB join the next batch. Freshly roasted, rested, then shipped.',
+  'home.featured.title': 'Current Selection',
+  'home.featured.subtitle': 'Seasonal lots and house favorites, roasted in small batches at our Bogor roastery.',
+  'home.story.title': 'From our roastery in Bogor',
+  'home.story.body':
+    'We started ROVENA because good coffee should feel personal — not corporate. Visit us in Taman Yasmin, message us on WhatsApp, or browse the catalog. Every bag is roasted here in Bogor.',
+  'home.story.cta': 'Our Story',
+  'home.guide.title': 'Dial in your brew',
+  'home.guide.body':
+    'Use our interactive brew calculator for V60, AeroPress, French press, and more — ratios, timing, and step-by-step guidance tuned to each coffee.',
+  'home.testimonial.title': 'What customers say',
 
   'cart.title': 'Your Fresh Coffee Cart',
   'cart.item': 'item',
@@ -68,7 +93,7 @@ export const en = {
   'catalog.sort': 'Sort',
 
   'about.intro':
-    'Rovena Coffee Roastery was founded on an uncompromising conviction: specialty coffee is not an industrial commodity. It is a seasonal agricultural art shaped by volcanic soil, high-altitude microclimates, multi-generational farming expertise, and precision roasting.',
+    'ROVENA Coffee Roastery is a specialty roastery in Bogor, West Java — founded by Muhammad Rizky Permana. We roast in small batches at Taman Yasmin Sektor 7, sourcing Indonesian coffees alongside select international micro-lots. Every bag is roasted to order, not pulled from a warehouse shelf.',
 
   'admin.title': 'Rovena Coffee Roastery — Operations Command Center',
   'pay.brand': 'ROVENA PAY',

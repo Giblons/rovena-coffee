@@ -136,7 +136,7 @@ describe('Catalog Domain Components — Unit Tests', () => {
       expect(screen.getByText(/SCA 90.5/i)).toBeInTheDocument();
       expect(screen.getByText(/Washed/i)).toBeInTheDocument();
       expect(screen.getByText('$22.50')).toBeInTheDocument();
-      expect(screen.getByRole('link', { name: /view bean/i })).toHaveAttribute(
+      expect(screen.getByRole('link', { name: /^view$/i })).toHaveAttribute(
         'href',
         `/coffee/${sampleCoffee.id}`
       );

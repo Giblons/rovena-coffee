@@ -6,7 +6,6 @@ import { useFormatCurrency } from '@/context/PreferencesContext';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
-import confetti from 'canvas-confetti';
 import {
   CheckCircle2,
   Printer,
@@ -31,18 +30,6 @@ export default function OrderConfirmationPage() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // Fire confetti on first mount
-    try {
-      confetti({
-        particleCount: 80,
-        spread: 65,
-        origin: { y: 0.6 },
-        colors: ['#c97a52', '#3d261e', '#a3a088', '#f2d5b6'],
-      });
-    } catch {
-      // Confetti is decorative, silent fail
-    }
-
     // Fetch order details from backend
     if (orderId) {
       fetch(`/api/orders/${orderId}`)

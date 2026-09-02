@@ -60,15 +60,13 @@ describe('Layout Components Verification', () => {
   });
 
   describe('Footer', () => {
-    it('renders direct trade, SCA score, and roast-to-order ethos sections', () => {
+    it('renders roastery info, address, and brand logo', () => {
       renderWithPrefs(<Footer />);
-      expect(screen.getByText(/Roast-to-Order Freshness/i)).toBeInTheDocument();
-      expect(screen.getByText(/100% Direct-Trade Verified/i)).toBeInTheDocument();
-      expect(screen.getByText(/SCA Certified 80\+ Scores/i)).toBeInTheDocument();
       expect(screen.getByAltText(/Rovena Coffee Roastery/i)).toBeInTheDocument();
       expect(
         screen.getByText(/Taman Yasmin Sektor 7, Jln\. Bambu Apus VI no\. 9, Bogor/i)
       ).toBeInTheDocument();
+      expect(screen.getByText(/Bogor, West Java, Indonesia/i)).toBeInTheDocument();
     });
 
     it('handles newsletter subscription submission', () => {

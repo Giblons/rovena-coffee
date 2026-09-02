@@ -3,7 +3,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { BrewGuideTemplate, BrewGuideStep } from '@/types/brew';
 import { Button } from '@/components/ui/Button';
-import confetti from 'canvas-confetti';
 import {
   Play,
   Pause,
@@ -97,17 +96,7 @@ export const BrewTimer: React.FC<BrewTimerProps> = ({
           if (prev + 1 >= totalTimeSeconds) {
             setIsRunning(false);
             setIsCompleted(true);
-            playChime(880, 'sine', 1.0); // A5 celebration chime
-            try {
-              confetti({
-                particleCount: 80,
-                spread: 70,
-                origin: { y: 0.6 },
-                colors: ['#d9532f', '#d99b1c', '#607952', '#8c5337'],
-              });
-            } catch {
-              // Canvas confetti fallback
-            }
+            playChime(880, 'sine', 1.0);
             return totalTimeSeconds;
           }
           return prev + 1;
