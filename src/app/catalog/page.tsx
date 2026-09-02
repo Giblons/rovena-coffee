@@ -3,7 +3,8 @@
 import React, { useState, useMemo } from 'react';
 import { Container } from '@/components/layout/Container';
 import { Button } from '@/components/ui/Button';
-import { Badge } from '@/components/ui/Badge';
+import { ScrollReveal } from '@/components/ui/ScrollReveal';
+import { usePreferences } from '@/context/PreferencesContext';
 import { Drawer } from '@/components/ui/Drawer';
 import {
   CoffeeCard,
@@ -30,14 +31,13 @@ import {
 import {
   SlidersHorizontal,
   X,
-  Coffee,
-  Sparkles,
   ArrowUpDown,
   RotateCcw,
   SearchX,
 } from 'lucide-react';
 
 export default function CatalogPage() {
+  const { t } = usePreferences();
   const [filters, setFilters] = useState<CatalogFilterState>(DEFAULT_FILTER_STATE);
   const [isMobileDrawerOpen, setIsMobileDrawerOpen] = useState<boolean>(false);
 
@@ -104,29 +104,19 @@ export default function CatalogPage() {
       {/* Page Header */}
       <section>
         <Container size="xl">
-          <div className="flex flex-col gap-3 pb-6 border-b border-subtle">
-            <div className="flex flex-wrap items-center justify-between gap-4">
+          <ScrollReveal className="flex flex-col gap-3 pb-6 border-b border-subtle">
+            <div className="flex flex-wrap items-end justify-between gap-4">
               <div>
-                <div className="flex items-center gap-2 text-terracotta-600 text-xs font-bold uppercase tracking-wider mb-1">
-                  <Coffee className="w-4 h-4" />
-                  <span>Fresh Harvest Catalog</span>
-                </div>
+                <p className="brand-tagline text-bronze-600 mb-2">ROVENA · Bogor</p>
                 <h1 className="font-serif text-3xl sm:text-4xl font-bold text-espresso-950">
-                  Specialty Coffee Collection
+                  {t('nav.catalog')}
                 </h1>
-              </div>
-
-              <div className="flex items-center gap-3">
-                <Badge variant="terracotta" size="md">
-                  <Sparkles className="w-3.5 h-3.5 mr-1" />
-                  <span>Roast-to-Order Dispatch</span>
-                </Badge>
               </div>
             </div>
             <p className="text-sm text-charcoal-600 max-w-2xl">
-              Browse single-origin micro-lots, competition-grade varietals, and calibrated house blends. Sourced via direct trade and roasted to order for peak aromatic expression.
+              Indonesian origins and select international micro-lots — roasted to order at our Yasmin roastery.
             </p>
-          </div>
+          </ScrollReveal>
         </Container>
       </section>
 

@@ -1,13 +1,16 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { ShoppingBag, Menu, X } from 'lucide-react';
+import { ShoppingBag, Menu, MessageCircle } from 'lucide-react';
 import { Container } from './Container';
 import { PreferenceControls } from './PreferenceControls';
+import { MobileNavSheet } from './MobileNavSheet';
+import { BrandLogo } from '@/components/brand/BrandLogo';
 import { useCart } from '@/context/CartContext';
 import { usePreferences } from '@/context/PreferencesContext';
 import { SITE } from '@/lib/site';
+import { cn } from '@/lib/utils';
 
 export interface HeaderProps {
   cartItemCount?: number;
@@ -21,6 +24,7 @@ export const Header: React.FC<HeaderProps> = ({
   onCartClick: propOnCartClick,
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const { t, theme } = usePreferences();
 
   let contextItemCount = 0;
@@ -36,112 +40,106 @@ export const Header: React.FC<HeaderProps> = ({
     // Gracefully handle rendering outside CartProvider
   }
 
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
   const itemCount = propItemCount !== undefined ? propItemCount : contextItemCount;
   const handleCartClick = propOnOpenCart || propOnCartClick || contextOpenCart;
   const displayCount = itemCount > 99 ? '99+' : itemCount;
 
   const navLinks = [
     { href: '/catalog', label: t('nav.catalog') },
-    { href: '/subscriptions', label: t('nav.subscriptions') },
-    { href: '/batches', label: t('nav.batches') },
-    { href: '/brew-guides', label: t('nav.brewGuides') },
-    { href: '/impact', label: t('nav.impact') },
+    { href: '/guide', label: t('nav.brewGuides') },
+    { href: '/about', label: t('nav.about') },
     { href: '/admin', label: t('nav.admin') },
   ];
 
-  const logoSrc =
-    theme === 'dark'
-      ? '/brand/logo-horizontal-light.svg'
-      : '/brand/logo-horizontal.svg';
+  const logoVariant = theme === 'dark' ? 'dark' : 'light';
 
   return (
-    <header className="sticky top-0 z-40 bg-surface/90 backdrop-blur-md border-b border-border-subtle transition-colors">
-      <Container size="xl">
-        <div className="flex items-center justify-between h-20">
-          <Link
-            href="/"
-            className="flex items-center gap-3 group focus-ring rounded-lg p-1"
+    <>
+      <header
+        className={cn(
+          'sticky top-0 z-40 transition-all duration-300',
+          scrolled
+            ? 'bg-surface/95 backdrop-blur-md border-b border-subtle shadow-subtle'
+            : 'bg-canvas/80 backdrop-blur-sm border-b border-transparent'
+        )}
+      >
+        <Container size="xl">
+          <div
+            className={cn(
+              'flex items-center justify-between transition-all duration-300',
+              scrolled ? 'header-dense' : 'header-default'
+            )}
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={logoSrc}
-              alt={SITE.name}
-              width={200}
-              height={46}
-              className="h-10 w-auto"
-            />
-          </Link>
+            <BrandLogo variant={logoVariant} size={scrolled ? 'sm' : 'md'} interactive />
 
-          <nav className="hidden xl:flex items-center gap-5">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-sm font-sans font-medium text-espresso-900 dark:text-cream-400 hover:text-terracotta-500 transition-colors focus-ring rounded px-2 py-1"
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
-
-          <div className="flex items-center gap-2 sm:gap-3">
-            <div className="hidden sm:block">
-              <PreferenceControls />
-            </div>
-
-            <button
-              type="button"
-              onClick={handleCartClick}
-              className="relative p-2.5 rounded-full text-espresso-900 dark:text-cream-400 hover:bg-cream-500/80 dark:hover:bg-espresso-800 transition-colors focus-ring"
-              aria-label={t('nav.openCart', { count: itemCount })}
-            >
-              <ShoppingBag className="w-6 h-6 stroke-[1.8]" />
-              {itemCount > 0 && (
-                <span className="absolute -top-1 -right-1 min-w-[20px] h-5 px-1 rounded-full bg-terracotta-500 text-cream-200 text-xs font-mono font-bold flex items-center justify-center animate-in zoom-in">
-                  {displayCount}
-                </span>
-              )}
-            </button>
-
-            <button
-              type="button"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="xl:hidden p-2.5 rounded-lg text-espresso-900 dark:text-cream-400 hover:bg-cream-500/80 dark:hover:bg-espresso-800 transition-colors focus-ring"
-              aria-label={t('nav.openMenu')}
-              aria-expanded={mobileMenuOpen}
-            >
-              {mobileMenuOpen ? (
-                <X className="w-6 h-6" />
-              ) : (
-                <Menu className="w-6 h-6" />
-              )}
-            </button>
-          </div>
-        </div>
-
-        {mobileMenuOpen && (
-          <div className="xl:hidden py-4 border-t border-border-subtle bg-surface animate-in fade-in slide-in-from-top-2">
-            <div className="px-4 mb-4 sm:hidden">
-              <PreferenceControls compact />
-            </div>
-            <h3 className="px-4 text-xs font-mono uppercase tracking-wider text-charcoal-400 font-semibold mb-2">
-              {t('nav.menu')}
-            </h3>
-            <nav className="flex flex-col space-y-1">
+            <nav className="hidden xl:flex items-center gap-1">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="px-4 py-2 rounded-lg text-sm font-medium text-espresso-900 dark:text-cream-400 hover:bg-cream-500 dark:hover:bg-espresso-800 transition-colors"
+                  className="text-sm font-sans font-medium text-espresso-800 dark:text-cream-400 hover:text-bronze-600 px-3 py-2 rounded-lg transition-colors focus-ring"
                 >
                   {link.label}
                 </Link>
               ))}
             </nav>
+
+            <div className="flex items-center gap-1.5 sm:gap-2">
+              <a
+                href={`https://wa.me/${SITE.phoneE164}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hidden sm:inline-flex items-center gap-1.5 px-3 py-2 text-xs font-semibold rounded-full bg-bronze-500/10 text-bronze-700 hover:bg-bronze-500/20 transition-colors focus-ring"
+              >
+                <MessageCircle className="w-4 h-4" />
+                <span className="hidden lg:inline">{t('cta.whatsappShort')}</span>
+              </a>
+
+              <div className="hidden sm:block">
+                <PreferenceControls />
+              </div>
+
+              <button
+                type="button"
+                onClick={handleCartClick}
+                className="relative p-2.5 rounded-full text-espresso-900 dark:text-cream-400 hover:bg-cream-600 dark:hover:bg-espresso-800 transition-colors focus-ring"
+                aria-label={t('nav.openCart', { count: itemCount })}
+              >
+                <ShoppingBag className="w-5 h-5 stroke-[1.8]" />
+                {itemCount > 0 && (
+                  <span className="absolute -top-0.5 -right-0.5 min-w-[18px] h-[18px] px-1 rounded-full bg-bronze-500 text-white text-[10px] font-bold flex items-center justify-center">
+                    {displayCount}
+                  </span>
+                )}
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setMobileMenuOpen(true)}
+                className="xl:hidden p-2.5 rounded-lg text-espresso-900 dark:text-cream-400 hover:bg-cream-600 transition-colors focus-ring"
+                aria-label={t('nav.openMenu')}
+                aria-expanded={mobileMenuOpen}
+              >
+                <Menu className="w-6 h-6" />
+              </button>
+            </div>
           </div>
-        )}
-      </Container>
-    </header>
+        </Container>
+      </header>
+
+      <MobileNavSheet
+        isOpen={mobileMenuOpen}
+        onClose={() => setMobileMenuOpen(false)}
+        navLinks={navLinks}
+        t={t}
+      />
+    </>
   );
 };

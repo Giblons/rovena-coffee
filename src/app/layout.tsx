@@ -5,28 +5,28 @@ import { PreferencesProvider } from '@/context/PreferencesContext';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { CartDrawer } from '@/components/cart/CartDrawer';
+import { WhatsAppBar } from '@/components/layout/WhatsAppBar';
 import { SITE } from '@/lib/site';
 import '@/styles/globals.css';
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://rovena-coffee.example.com'),
-  title: `${SITE.name} | Artisan Specialty Micro-lots & Roast-to-Order`,
+  title: `${SITE.name} | Specialty Coffee Roasted in Bogor`,
   description:
-    'Artisan specialty coffee roastery in Bogor featuring single-origin micro-lots, transparent direct-trade sourcing, custom grind options, roast-to-order scheduling, and fresh delivery.',
+    'ROVENA Coffee Roastery — specialty coffee roasted to order in Taman Yasmin, Bogor. Browse Indonesian origins, order via WhatsApp, and dial in your brew with our interactive guide.',
   keywords: [
     'Rovena',
-    'specialty coffee',
-    'Bogor coffee',
-    'artisan roastery',
-    'single origin coffee',
-    'micro-lot',
-    'direct trade',
-    'roast to order',
-    'SCA cupping score',
+    'kopi Bogor',
+    'roastery Bogor',
+    'specialty coffee Indonesia',
+    'Taman Yasmin',
+    'sangrai kopi',
+    'WhatsApp order',
   ],
   authors: [{ name: SITE.name }],
   icons: {
-    icon: '/favicon.svg',
+    icon: '/favicon.png',
+    apple: '/brand/logo-circular-white.png',
   },
 };
 
@@ -41,12 +41,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="h-full bg-canvas text-primary" suppressHydrationWarning>
+    <html lang="id" className="h-full bg-canvas text-primary" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Source+Sans+3:ital,wght@0,300..700;1,300..700&family=JetBrains+Mono:wght@400;500;600&display=swap"
           rel="stylesheet"
         />
         <script
@@ -55,7 +55,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="min-h-full flex flex-col antialiased bg-canvas text-primary font-sans selection:bg-terracotta-200 selection:text-espresso-950">
+      <body className="min-h-full flex flex-col antialiased bg-canvas text-primary font-sans selection:bg-bronze-200 selection:text-espresso-950">
         <PreferencesProvider>
           <ToastProvider>
             <CartProvider>
@@ -63,6 +63,7 @@ export default function RootLayout({
               <main className="flex-1 flex flex-col">{children}</main>
               <Footer />
               <CartDrawer />
+              <WhatsAppBar />
             </CartProvider>
           </ToastProvider>
         </PreferencesProvider>
